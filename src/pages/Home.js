@@ -1,38 +1,17 @@
-import { Outlet, Link } from "react-router-dom";
+import React from 'react';
+import logo from '../images/Tools.jpg';
 //import "./Home.css";
 
 const Home = () => {
-  //var user = JSON.parse(localStorage.getItem("currentUser"));
   return (
-    <div className="Home-container">
-      <h1 className="Home-name">{user.username}</h1>
-      <Link to="/Login">
-        <button
-          className="logout-button"
-          onClick={() => {
-            localStorage.removeItem("currentUser");
-          }}
-        >
-          Logout
-        </button>
-      </Link>
-      <nav className="user-navigation">
-        <ul>
-          <li>
-            <Link to={`/Users/${user.id}/Posts`}>Posts</Link>
-          </li>
-          <li>
-            <Link to={`/Users/${user.id}/Todos`}>Todos</Link>
-          </li>
-          {/* <li>
-            <Link to={`/Users/${user.id}/Albums`}>Albums</Link>
-          </li> */}
-          <li>
-            <Link to={`/Users/${user.id}/Info`}>Info</Link>
-          </li>
-        </ul>
-      </nav>
-      <Outlet />
+    <div dir="rtl" className="Home-container">
+      <img src={logo} alt="Logo" />
+      <div>
+        <h3>שעות פתיחה:</h3>
+        <h3>כתובת: </h3>
+        <h3>מספר טלפון: 012-3456789</h3>
+        <h3>באו להתנדב</h3>
+      </div>
     </div>
   );
 };
