@@ -1,3 +1,20 @@
-.Logo {
+/* .Logo {
     background-image: url(./images/Tools.jpg);
+  } */
+
+  .Home-p-about{
+    padding: 40px;
+    max-width: 500px;
+    background-color: rgb(181, 7, 8);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 0 auto;
+    position:relative;
   }
+
+  /* .image-main{
+    height: 300px;
+    margin-bottom: 10px;
+  } */
