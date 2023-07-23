@@ -20,28 +20,28 @@ const Layout = () => {
       <nav className="Layout-navigation">
         <ul>
           <li>
-            <Link to={`/Layout/Home`}>דף הבית</Link>
+            <Link to={`/ArgazKelim/Home`}>דף הבית</Link>
           </li>
           <li>
-            <Link to={`/Layout/GardenTools`}>כלי גינה</Link>
+            <Link to={`/ArgazKelim/GardenTools`}>כלי גינה</Link>
           </li>
           <li>
-            <Link to={`/`}>ציוד חשמלי</Link>
+            <Link to={`/ArgazKelim/ElectricEquipment`}>ציוד חשמלי</Link>
           </li>
           <li>
-            <Link to={`/`}>כלי עבודה ידניים</Link>
+            <Link to={`/ArgazKelim/HandTools`}>כלי עבודה ידניים</Link>
           </li>
           <li>
-            <Link to={`/`}>ציוד מגן</Link>
+            <Link to={`/ArgazKelim/ProtectiveEquipment`}>ציוד מגן</Link>
           </li>
           <li>
-            <Link to={`/`}>כלי עבודה לבית</Link>
+            <Link to={`/ArgazKelim/HomeTools`}>כלי עבודה לבית</Link>
           </li>
           <li>
-            <Link to={`/`}>כלי קמפינג</Link>
+            <Link to={`/ArgazKelim/CampingTools`}>כלי קמפינג</Link>
           </li>
           <li>
-            <Link to={`/`}>תרומת כלים</Link>
+            <Link to={`/ArgazKelim/DonatingTools`}>תרומת כלים</Link>
           </li>
         </ul>
       </nav>
