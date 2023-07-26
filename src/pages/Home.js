@@ -7,7 +7,7 @@ import "./Home.css";
 const Home = () => {
   return (
     <div dir="rtl" className="Home-container">
-      <img className='image-main' src={Tools} alt="Logo" />
+      <img className='image-main' src={main} alt="Logo" />
       <div>
         <p className="Home-p-about">
           מכירים את זה שאתם ממש ממש זקוקים לציוד מסוים<br/>
