@@ -49,11 +49,11 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div dir="rtl" className="login-container">
       <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
+        <h1>כניסה</h1>
         <div className="form-group">
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username">שם משתמש:</label>
           <input
             type="text"
             id="username"
@@ -63,7 +63,7 @@ const Login = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">סיסמה:</label>
           <input
             type="password"
             id="password"
@@ -72,9 +72,9 @@ const Login = () => {
             onChange={handleChange}
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit">כניסה</button>
         <div>
-          <Link to={`/register`}>Sign In</Link>
+          <Link to={`/register`}>הרשמה</Link>
         </div>
       </form>
     </div>

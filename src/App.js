@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import Login from './pages/Login';
+import Registration from "./pages/SignIn"
 import GardenTools from "./pages/gardenTools";
 import ElectricEquipment from "./pages/ElectricEquipment"
 import HandTools from "./pages/HandTools"
@@ -21,7 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/ArgazKelim/Home" />} />
         <Route path="/Login" element={<Login />} />
-        {/* <Route path="/register" element={<Registration />}/> */}
+        <Route path="/register" element={<Registration />}/>
         <Route path="ArgazKelim" element={<Layout />}> {/*rename */}
           <Route path="Home" element={<Home />} />
           {/* <Route path="regulations" element={<regulations />} /> */}
