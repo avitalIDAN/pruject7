@@ -23,7 +23,7 @@ const Home = () => {
         <h3>מתנ״ס השחר (כניסה אחורית)</h3>
         <h3>מספר טלפון: 012-3456789</h3>
         <h3>באו להתנדב</h3>
-        <a href={regulations}  target="_blank">לקריאת התקנון</a>
+        <a href={regulations}>לקריאת התקנון</a>
         {/* "/Layout/regulations" */}
       </div>
     </div>

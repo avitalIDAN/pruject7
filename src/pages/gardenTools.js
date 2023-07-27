@@ -40,15 +40,6 @@ const GardenTools = () => {
     <div dir="rtl" className="gardenTools-container">
       {/* {tools.map((tool) => (
         <Tool tool={tool}/>
-        <div  key={tool.id} className="tool-item">		        
-					<div>
-						<img className='image' src={ManualPruningShears} alt={tool.name}/>
-						<h3 className='name'>{tool.name}</h3>
-						<p className='amount'>{tool.amount}</p>
-						<p className='price'>{tool.price}</p>
-						<button className='lending'>{tool.lending}</button>
-					</div>
-				</div>
         ))} */}
 		           
 
