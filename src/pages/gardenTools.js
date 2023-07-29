@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
+
 import {
   requestsGet
 } from "../requestsToServer.js";
 import './gardenTools.css'
 import Tool from "./Tool"
+
+const React = require('react');
+const { useState, useEffect } = require('react');
 
 function GardenTools (){
   const [tools, setTools] =useState(null);
