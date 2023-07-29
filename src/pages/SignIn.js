@@ -1,6 +1,5 @@
 import { useState } from "react";
-//import ReactDOM from "react-dom/client";
-// import "./Registration.css";
+import "./signIn.css"
 import { Link } from "react-router-dom";
 import { requestsPost } from "../requestsToServer";
 
@@ -85,67 +84,86 @@ const Registration = () => {
   };
 
   return (
-    <div className="registration-container">
-      <form onSubmit={handleSubmit}>
-        <h1>הרשמה</h1>
-        <div className="form-group">
-          <label htmlFor="username">שם משתמש:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={user.username || ""}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">סיסמה:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={user.password || ""}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">הרשמה</button>
-        <div>
-          <Link to={`/Login`}>כניסה עם משתמש קיים</Link>
-        </div>
-        {/* <h3>More Info</h3>
-         <div  className="info-details">
-          <input
-            name="name"
-            className="info-item"
-            type="text"
-            value={inputs.name || "Name"}
-            onChange={handleChangeI}
-          />
-          <input
-            name="email"
-            className="info-item"
-            type="text"
-            value={inputs.email || "Email"}
-            onChange={handleChangeI}
-          />
-          <input
-            name="phone"
-            className="info-item"
-            type="text"
-            value={inputs.phone || "Phone"}
-            onChange={handleChangeI}
-          />
-          <input
-            name="website"
-            className="info-item"
-            type="text"
-            value={inputs.website || "Website"}
-            onChange={handleChangeI}
-          />
-      </div> */}
-      </form>
- 
+  <div dir="rtl" className="registration-container">
+  <form onSubmit={handleSubmit}>
+    <h1>הרשמה</h1>
+    <div className="form-group">
+      <label htmlFor="name">שם:</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        value={user.name || ""}
+        onChange={handleChange}
+      />
     </div>
+    <div className="form-group">
+      <label htmlFor="username">שם משתמש:</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        value={user.username || ""}
+        onChange={handleChange}
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="password">סיסמה:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        value={user.password || ""}
+        onChange={handleChange}
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="phone">מספר טלפון:</label>
+      <input
+        type="text"
+        id="phone"
+        name="phone"
+        value={user.phone || ""}
+        onChange={handleChange}
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="address">כתובת:</label>
+      <input
+        type="text"
+        id="address"
+        name="address"
+        value={user.address || ""}
+        onChange={handleChange}
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="id">תז:</label>
+      <input
+        type="text"
+        id="id"
+        name="id"
+        value={user.id || ""}
+        onChange={handleChange}
+      />
+    </div>
+    <div className="form-group">
+      <label htmlFor="email">מייל:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        value={user.email || ""}
+        onChange={handleChange}
+      />
+    </div>
+    <button type="submit">הרשמה</button>
+    <div>
+      <Link to={`/Login`}>כניסה עם משתמש קיים</Link>
+    </div>
+  </form>
+</div>
+
   );
 };
 

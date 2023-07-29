@@ -1,23 +1,12 @@
 import { Outlet, Link } from "react-router-dom";
 import "./Layout.css";
-import logo from '../images/logo.jpg';
 
 const Layout = () => {
   //var user = JSON.parse(localStorage.getItem("currentUser"));
   return (
-    <div dir="rtl" className="Layout-container">
-      <image alt="logo" src={logo} className="logout-logo"></image>
-      <Link to="/Login">
-        <button
-          className="logout-button"
-          onClick={() => {
-            localStorage.removeItem("currentUser");
-          }}
-        >
-          כניסה
-        </button>
-      </Link>
+    <div dir="rtl" className="Layout-container">      
       <nav className="Layout-navigation">
+        
         <ul>
           <li>
             <Link to={`/ArgazKelim/Home`}>דף הבית</Link>
@@ -44,6 +33,17 @@ const Layout = () => {
             <Link to={`/ArgazKelim/DonatingTools`}>תרומת כלים</Link>
           </li>
         </ul>
+        <Link to="/Login">
+        <button
+          className="logout-button"
+          onClick={() => {
+            localStorage.removeItem("currentUser");
+          }}
+        >
+          כניסה
+        </button>
+      </Link>
+
       </nav>
       <Outlet />
     </div>

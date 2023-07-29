@@ -1,77 +1,61 @@
-body{
-    background-color: #e6e6fa; /* Light Purple */
+/* Layout.css */
+body {
+  margin: 0;
 }
 
-  .Layout-navigation {
-    margin-top: 30px;
-    font-size: 25px;
-    background-color: #e4e4ff;
-  }
-  
-  .Layout-navigation ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .Layout-navigation ul li {
-    margin-right: 20px;
-  }
-  
-  /* .Layout-navigation ul li:last-child {
-    margin-right: 0;
-  } */
-  
-  .Layout-navigation a {
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
-    transition: color 0.3s;
-  }
-  
-  .Layout-navigation a:hover {
-    color: #0056b3;
-  }
+.Layout-container {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Align items to the left */
+  padding: 20px;
+  position: relative; /* Add position relative to the container */
+}
 
-  .Layout-container {
-    background-color: #fff;
-    padding: 40px;
-    text-align: center;
-    /* border-radius: 8px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* //max-width: 500px; */
-    margin: 0 auto;
-    position:relative; /* Add position relative for positioning the exit button */
-  }
-  
-  .logout-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+.logout-button {
+  background-color: #e21324;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
-  .logout-logo {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    height: 30px;
-    width: auto;
-    background-color: #007bff;
-    padding: 10px 20px;
-    /* color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer; */
-  }
-  
-  .logout-button:hover {
-    background-color:  #0069d9;
-  }
+.logout-button:hover {
+  background-color: #f7918a;
+  border-radius: 5px;
+}
+
+.Layout-navigation {
+  background-color: #e76633b0;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%; /* Set the navigation bar width to 100% */
+  display: flex;
+  justify-content: space-between; /* Add space between items */
+  align-items: center; /* Center items vertically */
+}
+
+.Layout-navigation ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+.Layout-navigation li {
+  margin: 0 10px;
+}
+
+.Layout-navigation a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  padding: 5px 10px;
+}
+
+.Layout-navigation a:hover {
+  background-color: #f7918a;
+  border-radius: 5px;
+}

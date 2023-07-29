@@ -2,10 +2,10 @@ const mysql = require("mysql2");
 
 var con = mysql.createConnection({
   host: "localhost",
+  port: "3306",
   user: "root",
-  password: "", //"password" - your password here
-  port: 3306,
-  database: "", //- remove comment after first run
+  password: "123456",
+  database: "argaz",
 });
 
 con.connect(async function (err) {
@@ -13,12 +13,12 @@ con.connect(async function (err) {
   console.log("Connected!");
 });
 
-let tables = [];
+let tables = ["users","userspass","lending","donation","garden","electric","handTools","potectorTools","homeTools","camping"];
 
 exports.get = function (tableName, itemID = {}, moreTableName = "") {
   return new Promise((resolve, reject) => {
     if (
-      tableName == "passwords" &&
+      tableName == "userspass" &&
       (itemID.password == undefined || itemID.username == undefined)
     ) {
       reject(new Error("You have no access, the information is confidential"));

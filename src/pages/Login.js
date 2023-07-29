@@ -76,6 +76,9 @@ const Login = () => {
         <div>
           <Link to={`/register`}>הרשמה</Link>
         </div>
+        <div>
+          <Link to={`/ArgazKelim/Home`}>חזרה לדף הבית</Link>
+        </div>
       </form>
     </div>
   );
