@@ -2,7 +2,7 @@ import { Outlet, Link } from "react-router-dom";
 import "./Layout.css";
 
 const Layout = () => {
-  //var user = JSON.parse(localStorage.getItem("currentUser"));
+  var user = JSON.parse(localStorage.getItem("currentUser"));
   return (
     <div dir="rtl" className="Layout-container">      
       <nav className="Layout-navigation">
@@ -34,14 +34,15 @@ const Layout = () => {
           </li>
         </ul>
         <Link to="/Login">
-        <button
-          className="logout-button"
+        {user?(<label
           onClick={() => {
             localStorage.removeItem("currentUser");
-          }}
+          }}>שלום {user.username}</label>):(
+        <button
+          className="login-button"
         >
           כניסה
-        </button>
+        </button>)}
       </Link>
 
       </nav>

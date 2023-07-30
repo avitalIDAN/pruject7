@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+router.use(express.json());
 var DB = require("../DB");
 var tableName = 'users';
 
@@ -24,7 +25,7 @@ router.get("/", (req, res) => {
     //   console.log(error.details[0].message);
     //   return res.status(400).send(error.details[0].message);
     // }
-
+    console.log(req.body);
     DB.post(tableName, req.body)
       .then((result) => {
         console.log(result); // Access the result array here

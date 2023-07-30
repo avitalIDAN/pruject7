@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+router.use(express.json());
 var DB = require("../DB");
 var tableName = 'userspass';
 

@@ -4,15 +4,11 @@ import { Link } from "react-router-dom";
 import { requestsPost } from "../requestsToServer";
 
 const Registration = () => {
-  const [user, setUser] = useState({
-    id: 0,
-    username: "",
-    password: "",
-  });
+  const [user, setUser] = useState({});
   const [inputs, setInputs] = useState({});
-  const [visibilityMoreInfo, setvisibilityMoreInfo] = useState({
-    visibility: "hidden"
-  });
+  // const [visibilityMoreInfo, setvisibilityMoreInfo] = useState({
+  //   visibility: "hidden"
+  // });
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -28,13 +24,15 @@ const Registration = () => {
 
   async function fetchData() {
     try {
-      console.log(user);
-      requestsPost(`/passwords`, user);
-      setUser({
+      let newInUserspass = {
         id: 0,
-        username: "",
-        password: "",
-      });
+        username: user.username,
+        password: user.password,
+        isManager: 0,
+      };
+      console.log(newInUserspass);
+      requestsPost(`/userspass`, newInUserspass);
+      setUser({});
     } catch (error) {
       console.error(error);
     }
@@ -42,16 +40,14 @@ const Registration = () => {
 
   async function fetchInfo() {
     try {
-      setvisibilityMoreInfo({visibility: "hidden"})
+      //setvisibilityMoreInfo({visibility: "hidden"})
       let newInUser = {
         id: user.id,
         name: inputs.name || "name",
         username: user.username,
         email: inputs.email || "email",
         phone: inputs.phone || "0",
-        website: inputs.website || "website",
-        rank: "user", 
-        api_key: "0",
+        address: inputs.address || "address",
       };
       setInputs({});
       //var json = JSON.stringify(newInUser);
@@ -105,6 +101,7 @@ const Registration = () => {
         name="username"
         value={user.username || ""}
         onChange={handleChange}
+        required
       />
     </div>
     <div className="form-group">
@@ -115,6 +112,7 @@ const Registration = () => {
         name="password"
         value={user.password || ""}
         onChange={handleChange}
+        required
       />
     </div>
     <div className="form-group">
