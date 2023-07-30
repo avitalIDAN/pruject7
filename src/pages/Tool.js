@@ -3,12 +3,14 @@ import {
   requestsPut,
   requestsDelete
 } from "../requestsToServer.js";
+import './Tool.css'; 
 
 const Tool = ({ tool , tableName , updateToolList }) => {
   const [imageSrc, setImageSrc] = useState(null);
   const [editingMode, setEditingMode] = useState(false);
   const [name, setName] = useState(tool.name);
   const [quantityAvailable, setQuantityAvailable] = useState(tool.quantityAvailable);
+  const [quantity, setQuantity] = useState(tool.quantity);
   const [cost, setCost] = useState(tool.cost);
   const [size, setSize] = useState(tool.size);
 
@@ -53,6 +55,7 @@ const Tool = ({ tool , tableName , updateToolList }) => {
         id: tool.id,
         name: name,
         quantityAvailable: quantityAvailable,
+        quantity: quantity,
         cost: cost, 
         size: size, 
       };
@@ -65,6 +68,7 @@ const Tool = ({ tool , tableName , updateToolList }) => {
         // Handle the success case, e.g., display a success message, close the form, etc.
         console.log('Post updated successfully');
         setEditingMode(false);
+        updateToolList();
       } else {
         // Handle the error case, e.g., display an error message
         throw new Error('Failed to update the post');
@@ -78,8 +82,22 @@ const Tool = ({ tool , tableName , updateToolList }) => {
   return (
     
     <div key={tool.id} className="tool-item">
-       {editingMode ? (
-        <form onSubmit={handleFormSubmit}>
+      <div className='tool-container'>
+        {imageSrc && <img className="image" src={imageSrc} alt={tool.name} />}
+        <div className="tool-info">
+           <h3 className="name">{tool.name}</h3>
+           <p className="amount">{tool.quantityAvailable}/{tool.quantity}</p>
+           <p className="size">{tool.size} מטר</p>
+           <p className="price">{tool.cost} ש"ח</p>
+       </div>
+        <div className='button-container'>
+        <button className="button" onClick={handleLendClick}>השאלה</button>
+        <button className="button" onClick={handleDeleteClick}>מחיקה</button>
+        <button className="button" onClick={handleEditClick}>עריכה</button>
+        </div>
+      </div>
+      {editingMode ? (
+        <form className='form-container' onSubmit={handleFormSubmit}>
           <input
             type="text"
             value={name}
@@ -90,7 +108,13 @@ const Tool = ({ tool , tableName , updateToolList }) => {
             type="number"
             value={quantityAvailable}
             onChange={(e) => setQuantityAvailable(e.target.value)}
-            placeholder="Amount"
+            placeholder="Quantity Available"
+          />
+          <input
+            type="number"
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+            placeholder="Quantity"
           />
           <input
             type="number"
@@ -99,27 +123,18 @@ const Tool = ({ tool , tableName , updateToolList }) => {
             placeholder="Cost"
           />
           <input
-            type="text"
+            type="number"
             value={size}
             onChange={(e) => setSize(e.target.value)}
             placeholder="Size"
           />
-          <button type="submit">Save</button>
+          <button type="submit">שמירה</button>
           <button type="button" onClick={() => setEditingMode(false)}>
-            Cancel
+            ביטול
           </button>
         </form>
-      ) : (
-      <div>
-        {imageSrc && <img className="image" src={imageSrc} alt={tool.name} />}
-        <h3 className="name">{tool.name}</h3>
-        <p className="amount">{tool.quantityAvailable}/{tool.quantity}</p>
-        <p className="price">{tool.cost} ש"ח</p>
-        <button className="button" onClick={handleLendClick}>השאלה</button>
-        <button className="button" onClick={handleDeleteClick}>מחיקה</button>
-        <button className="button" onClick={handleEditClick}>עריכה</button>
-      </div>
-      )}
+      ):null}
+
     </div>
   );
 };
