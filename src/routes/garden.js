@@ -29,7 +29,7 @@ router.get("/", (req, res) => {
     DB.post(tableName, req.body)
       .then((result) => {
         console.log(result); // Access the result array here
-        return res.send(result);
+        return res.status(200).json({ message: "Added successfully" });
       })
       .catch((error) => {
         console.error(error); // Handle any errors here

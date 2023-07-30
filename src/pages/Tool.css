@@ -1,14 +1,14 @@
 /* tool.css */
 
 .tool-item {
-    display: inline-flex; /* Display the tool item and form in a row */
+    display: flex; /* Display the tool item and form in a row */
     align-items: center; /* Center items vertically in the container */
     margin-bottom: 20px; /* Add some spacing between tool items */
   }
 
   .tool-container {
     border: 1px solid #ccc;
-    padding: 5px;
+    padding: 8px;
     margin: 10px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -66,5 +66,58 @@
   }
   
   .form-container button[type="button"] {
+    background-color: #dc3545;
+  }
+
+  .Tools-container {
+    padding: 10px; /* Add some padding around the tool list */
+  }
+  
+  .add-button-container {
+    display: flex;
+    justify-content: flex-start; /* Align the button to the left */
+    margin-bottom: 20px; /* Add some spacing below the button */
+  }
+  
+  .button-add {
+    /* Styles for the "הוספת כלי חדש" button */
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .new-tool-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    width: 250px;
+  }
+  
+  .new-tool-form input {
+    width: 90%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .new-tool-form button {
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .new-tool-form button[type="submit"] {
+    background-color: #dc3545;
+  }
+  
+  .new-tool-form button[type="button"] {
     background-color: #dc3545;
   }

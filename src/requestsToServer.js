@@ -24,7 +24,7 @@ export async function requestsPost(path, object) {
     },
   });
 
-  return await response.json();
+  return response;
 }
 
 export async function requestsPut(path, object) {
@@ -36,7 +36,7 @@ export async function requestsPut(path, object) {
         "Content-type": "application/json",
       },
     });
-    return await response;
+    return response;
   } catch (error) {
     console.error(error);
     throw error;
@@ -47,5 +47,5 @@ export async function requestsDelete(path) {
   const response = await fetch(hostname + path, {
     method: "DELETE",
   });
-  return await response;
+  return response;
 }

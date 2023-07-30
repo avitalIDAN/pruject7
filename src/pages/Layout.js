@@ -34,10 +34,12 @@ const Layout = () => {
           </li>
         </ul>
         <Link to="/Login">
-        {user?(<label
+        {user?(
+        <label
           onClick={() => {
             localStorage.removeItem("currentUser");
-          }}>שלום {user.username}</label>):(
+          }}>שלום {user.username}  <br></br> התנתק       
+        </label>):(
         <button
           className="login-button"
         >

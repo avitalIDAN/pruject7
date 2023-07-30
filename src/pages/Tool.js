@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import {
   requestsPut,
-  requestsDelete
+  requestsDelete,
+  requestsPost
 } from "../requestsToServer.js";
 import './Tool.css'; 
+import {  useNavigate } from "react-router-dom";
 
-const Tool = ({ tool , tableName , updateToolList }) => {
+
+
+const Tool = ({ tool , tableName , updateToolList , isManager}) => {
   const [imageSrc, setImageSrc] = useState(null);
   const [editingMode, setEditingMode] = useState(false);
   const [name, setName] = useState(tool.name);
@@ -13,6 +17,8 @@ const Tool = ({ tool , tableName , updateToolList }) => {
   const [quantity, setQuantity] = useState(tool.quantity);
   const [cost, setCost] = useState(tool.cost);
   const [size, setSize] = useState(tool.size);
+  let navigate = useNavigate();
+
 
   useEffect(() => {
     // Dynamically import the image using its relative path
@@ -25,7 +31,37 @@ const Tool = ({ tool , tableName , updateToolList }) => {
       });
   }, [tool.image]);
 
-  const handleLendClick = () => {
+  const handleLendClick = async () => {
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    if (user == null){
+      alert("כדי להשאיל צריך קודם להתחבר :)")
+      navigate("/Login");
+      return;
+    }
+    if (tool.quantityAvailable > 0) {
+      // The item is available for lending
+      const lendingData = {
+        userId: user.id,
+        username: user.username,
+        itemId: tool.id,
+        tableName: tableName,
+      };
+      try {
+        const response = await requestsPost("/lending", lendingData);
+        if (response.ok) {
+          // Item was successfully lent, you can handle it as needed
+          alert("המוצר זמין, פרטייך נשמרו במערכת, מוזמן להגיע בשעות הפתיחה :)"); // You can customize this message
+        } else {
+          throw new Error('Failed to lend the tool');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('An error occurred while lending the tool');
+      }
+    } else {
+      // The item is not available for lending
+      alert("המוצר אינו זמין כעת"); // You can customize this message
+    }
 
   };
 
@@ -90,11 +126,16 @@ const Tool = ({ tool , tableName , updateToolList }) => {
            <p className="size">{tool.size} מטר</p>
            <p className="price">{tool.cost} ש"ח</p>
        </div>
-        <div className='button-container'>
-        <button className="button" onClick={handleLendClick}>השאלה</button>
-        <button className="button" onClick={handleDeleteClick}>מחיקה</button>
-        <button className="button" onClick={handleEditClick}>עריכה</button>
-        </div>
+       <div className='button-container'>
+  <button className="button" onClick={handleLendClick}>השאלה</button>
+  {isManager && (
+    <>
+      <button className="button" onClick={handleDeleteClick}>מחיקה</button>
+      <button className="button" onClick={handleEditClick}>עריכה</button>
+    </>
+  )}
+</div>
+
       </div>
       {editingMode ? (
         <form className='form-container' onSubmit={handleFormSubmit}>
@@ -102,31 +143,31 @@ const Tool = ({ tool , tableName , updateToolList }) => {
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Tool Name"
+            placeholder="שם הכלי"
           />
           <input
             type="number"
             value={quantityAvailable}
             onChange={(e) => setQuantityAvailable(e.target.value)}
-            placeholder="Quantity Available"
+            placeholder="כמות זמינה"
           />
           <input
             type="number"
             value={quantity}
             onChange={(e) => setQuantity(e.target.value)}
-            placeholder="Quantity"
+            placeholder="כמות כוללת"
           />
           <input
             type="number"
             value={cost}
             onChange={(e) => setCost(e.target.value)}
-            placeholder="Cost"
+            placeholder="עלות"
           />
           <input
             type="number"
             value={size}
             onChange={(e) => setSize(e.target.value)}
-            placeholder="Size"
+            placeholder="גודל"
           />
           <button type="submit">שמירה</button>
           <button type="button" onClick={() => setEditingMode(false)}>
