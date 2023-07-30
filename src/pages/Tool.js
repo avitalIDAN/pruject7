@@ -18,6 +18,7 @@ const Tool = ({ tool , tableName , updateToolList , isManager}) => {
   const [cost, setCost] = useState(tool.cost);
   const [size, setSize] = useState(tool.size);
   let navigate = useNavigate();
+  
 
 
   useEffect(() => {

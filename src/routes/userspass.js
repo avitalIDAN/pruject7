@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 router.use(express.json());
 var DB = require("../DB");
-var tableName = 'userpass';
+var tableName = 'userspass';
 
 router.get("/", (req, res) => {
     DB.get(tableName, req.query)

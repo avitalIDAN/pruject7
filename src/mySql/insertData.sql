@@ -34,7 +34,7 @@ VALUES
  (3, 'ראש למברגה', 1, 1, 20, null, 'handTools/img3.jpg'),
  (4, 'יתד', 1, 1, 20, null, 'handTools/img4.jpg'),
  (5, 'מפתח צינורות', 1, 1, 20, null, 'handTools/img5.jpg'),
- (6, 'מברג שטוח', 1, 1, 20, null, 'handTools/ing6.jpg'),
+ (6, 'מברג שטוח', 1, 1, 20, null, 'handTools/img6.jpg'),
  (7, 'סולם ענק', 1, 1, 20, null, 'handTools/img7.jpg'),
  (8, 'קאטר', 1, 1, 20, null, 'handTools/img8.jpg'),
  (9, 'פלאייר מתכוונן', 1, 1, 20, null, 'handTools/img9.jpg'),
@@ -57,7 +57,7 @@ VALUES
  (3, 'דלי', 5, 5, 20, null, 'homeTools/img3.jpg'),
  (4, 'אקדח סיכות', 1, 1, 5, null, 'homeTools/img4.jpg'),
  (5, 'אקדח דבק חם', 2, 2, 5, null, 'homeTools/img5.jpg'),
- (6, 'דבק חם', 1, 1, 5, null, 'homeTools/ing6.jpg');
+ (6, 'דבק חם', 1, 1, 5, null, 'homeTools/img6.jpg');
  
   INSERT INTO camping (id, name, quantity, quantityAvailable, cost, size, image)
 VALUES 
@@ -66,4 +66,4 @@ VALUES
  (3, 'מחצלות', 10, 10, 10, null, 'camping/img3.jpg'),
  (4, 'מאוורר', 1, 1, 20, null, 'camping/img4.jpg'),
  (5, 'פרוגקטור', 1, 1, 10, null, 'camping/img5.jpg'),
- (6, 'כבל מאריך', 4, 4, 5, 20, 'camping/ing6.jpg');
+ (6, 'כבל מאריך', 4, 4, 5, 20, 'camping/img6.jpg');

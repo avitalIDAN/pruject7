@@ -23,9 +23,8 @@ function App() {
         <Route path="/" element={<Navigate to="/ArgazKelim/Home" />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/register" element={<Registration />}/>
-        <Route path="ArgazKelim" element={<Layout />}> {/*rename */}
+        <Route path="ArgazKelim" element={<Layout />}>
           <Route path="Home" element={<Home />} />
-          {/* <Route path="regulations" element={<regulations />} /> */}
           <Route path="GardenTools" element={<GardenTools />} />
           <Route path="ElectricEquipment" element={<ElectricTool />} />
           <Route path="HandTools" element={<HandTools />} />
@@ -33,9 +32,7 @@ function App() {
           <Route path="HomeTools" element={<HomeTools />} />
           <Route path="CampingTools" element={<CampingTools />} />
           <Route path="DonatingTools" element={<DonatingTools />} />
-          {/* <Route path=":id/Posts" element={<Posts />} />
-          <Route path=":id/Todos" element={<Todos />} />
-          <Route path=":id/Info" element={<Info />} /> */}
+
         </Route>
       </Routes>
     </BrowserRouter>
