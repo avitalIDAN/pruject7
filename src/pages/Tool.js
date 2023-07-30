@@ -49,6 +49,7 @@ const Tool = ({ tool , tableName , updateToolList , isManager}) => {
       try {
         const response = await requestsPost("/lending", lendingData);
         if (response.ok) {
+          //setQuantityAvailable(tool.setQuantityAvailable++); update in server
           // Item was successfully lent, you can handle it as needed
           alert("המוצר זמין, פרטייך נשמרו במערכת, מוזמן להגיע בשעות הפתיחה :)"); // You can customize this message
         } else {
