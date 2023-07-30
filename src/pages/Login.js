@@ -16,7 +16,7 @@ const Login = () => {
   async function fetchData() {
     try {
       const data = await requestsGet(
-        `/passwords?username=${inputs.username}&password=${inputs.password}`
+        `/userspass?username=${inputs.username}&password=${inputs.password}`
       );
 
       console.log(data);
@@ -26,12 +26,18 @@ const Login = () => {
           const dataUser = await requestsGet(
             `/users?username=${inputs.username}`
           );
-          console.log(dataUser);
 
-          var json = JSON.stringify(dataUser[0]);
+          var currentUser = {
+            id: dataUser[0].id,
+            username: dataUser[0].username,
+            isManager: data[0].isManager
+          }
+          console.log(currentUser);
+
+          var json = JSON.stringify(currentUser);
           localStorage.setItem("currentUser", json);
           exist = true;
-          window.location.href = "/Users";
+          window.location.href = "/";
         }
       }
       if (exist === false) {

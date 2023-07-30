@@ -25,7 +25,7 @@ app.use("/handTools",handToolsRoute);
 app.use("/homeTools",homeToolsRoute);
 app.use("/lending",lendingRoute);
 app.use("/potectorTools",potectorToolsRoute);
-app.use("/userspassTools",userspassToolsRoute);
+app.use("/userspass",userspassToolsRoute);//Tools
 
 
 app.listen(PORT, () =>{

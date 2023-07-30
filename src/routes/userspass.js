@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 var DB = require("../DB");
+var tableName = 'userspass';
 
 
 router.get("/", (req, res) => {
-    const collection = req.params.collection;
-    DB.get(collection, req.query)
+    DB.get(tableName, req.query)
       .then((result) => {
         console.log(result); // Access the result array here
         res.send(result);
@@ -18,15 +18,14 @@ router.get("/", (req, res) => {
   
 
   router.post("/", (req, res) => {
-    const collection = req.params.collection;
-    const { error } = Check.check(collection, req.body);
+    // const { error } = Check.check(tableName, req.body);
   
-    if (error) {
-      console.log(error.details[0].message);
-      return res.status(400).send(error.details[0].message);
-    }
+    // if (error) {
+    //   console.log(error.details[0].message);
+    //   return res.status(400).send(error.details[0].message);
+    // }
 
-    DB.post(collection, req.body)
+    DB.post(tableName, req.body)
       .then((result) => {
         console.log(result); // Access the result array here
         return res.send(result);
@@ -37,16 +36,15 @@ router.get("/", (req, res) => {
       });
 });
   
-router.put("/", (req, res) => {
-    const collection = req.params.collection;
+router.put("/:id", (req, res) => {
     // check body
-    const { error } = Check.check(collection, req.body);
-    if (error) {
-      console.log(error.details[0].message);
-      return res.status(400).send(error.details[0].message);
-    }
+    // const { error } = Check.check(tableName, req.body);
+    // if (error) {
+    //   console.log(error.details[0].message);
+    //   return res.status(400).send(error.details[0].message);
+    // }
   
-    DB.put(collection, req.body)
+    DB.put(tableName, req.body)
       .then((result) => {
         console.log(result); // Access the result array here
         return res.send(result);
@@ -56,9 +54,8 @@ router.put("/", (req, res) => {
       });
   });
   
-router.delete("/", (req, res) => {
-    const collection = req.params.collection;
-    DB.deletee(collection, req.params.id)
+router.delete("/:id", (req, res) => {
+    DB.delete(tableName, req.params.id)
       .then((result) => {
         console.log(result); // Access the result array here
         return res.send(result);
