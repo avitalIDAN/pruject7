@@ -28,21 +28,24 @@ export async function requestsPost(path, object) {
 }
 
 export async function requestsPut(path, object) {
-  console.log("in put");
-  console.log(object);
-  const response = await fetch(hostname + path, {
-    method: "PUT",
-    body: JSON.stringify(object),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  });
-  return await response.json();
+  try {
+    const response = await fetch(hostname + path, {
+      method: "PUT",
+      body: JSON.stringify(object),
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    return await response;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 export async function requestsDelete(path) {
   const response = await fetch(hostname + path, {
     method: "DELETE",
   });
-  return await response.json();
+  return await response;
 }

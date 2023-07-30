@@ -55,55 +55,22 @@ exports.get = function (tableName, itemID = {}, moreTableName = "") {
   });
 };
 
-exports.put = function (tableName, data) {
+exports.put = function (tableName, id, data) {
   return new Promise((resolve, reject) => {
-    if (!data.id) {
-      reject(new Error("Updated member does not have a valid ID."));
-      return;
-    }
-
-    let sql = `UPDATE ${tableName} SET ? WHERE id = ?`;
-    let checkSql = `SELECT COUNT(*) AS count FROM ${tableName} WHERE id = ?`;
-
-
-    con.query(checkSql, data.id, function (err, result) {
-      if (err) {
-        reject(err);
-      } else {
-        if (result[0].count === 0) {
-          reject(new Error("No member with the specified ID exists."));
-        } else {
-          con.query(sql, [data, data.id], function (err, result) {
-            if (err) {
-              reject(err);
-            } else {
-              console.log("Member updated successfully.");
-              console.log(result);
-              resolve(data);
-            }
-          });
-        }
-      }
-    });
-  });
+        const query = `UPDATE ${tableName} SET ? WHERE id = ?`;
+    
+        con.query(query, [data, id], (error, result) => {
+          if (error) {
+            reject(error);
+          } else if (result.affectedRows === 0) {
+            reject(`Item with ID ${id} not found in table ${tableName}`);
+          } else {
+            resolve({ message: "Item updated successfully" });
+          }
+        });
+      });
 };
 
-// // Generic function to update an item in a table
-// const updateItem = (tableName, id, itemData) => {
-//   return new Promise((resolve, reject) => {
-//     const query = `UPDATE ${tableName} SET ? WHERE id = ?`;
-
-//     db.query(query, [itemData, id], (error, result) => {
-//       if (error) {
-//         reject(error);
-//       } else if (result.affectedRows === 0) {
-//         reject(`Item with ID ${id} not found in table ${tableName}`);
-//       } else {
-//         resolve({ message: "Item updated successfully" });
-//       }
-//     });
-//   });
-// };
 
 exports.post = function (tableName, data) {
   return new Promise((resolve, reject) => {
