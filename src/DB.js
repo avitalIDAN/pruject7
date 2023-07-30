@@ -88,6 +88,23 @@ exports.put = function (tableName, data) {
   });
 };
 
+// // Generic function to update an item in a table
+// const updateItem = (tableName, id, itemData) => {
+//   return new Promise((resolve, reject) => {
+//     const query = `UPDATE ${tableName} SET ? WHERE id = ?`;
+
+//     db.query(query, [itemData, id], (error, result) => {
+//       if (error) {
+//         reject(error);
+//       } else if (result.affectedRows === 0) {
+//         reject(`Item with ID ${id} not found in table ${tableName}`);
+//       } else {
+//         resolve({ message: "Item updated successfully" });
+//       }
+//     });
+//   });
+// };
+
 exports.post = function (tableName, data) {
   return new Promise((resolve, reject) => {
     let sql = `INSERT INTO ${tableName} SET ?`;

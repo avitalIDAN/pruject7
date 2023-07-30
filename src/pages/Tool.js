@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const GardenTools = ({ tool }) => {
+const Tool = ({ tool }) => {
   const [imageSrc, setImageSrc] = useState(null);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const GardenTools = ({ tool }) => {
       <div>
         {imageSrc && <img className="image" src={imageSrc} alt={tool.name} />}
         <h3 className="name">{tool.name}</h3>
-        <p className="garden">{tool.amount}</p>
+        <p className="amount">{tool.amount}</p>
         <p className="price">{tool.cost}</p>
         <button className="lending">השאלה</button>
       </div>
@@ -27,4 +27,4 @@ const GardenTools = ({ tool }) => {
   );
 };
 
-export default GardenTools;
+export default Tool;
