@@ -4,10 +4,10 @@ import Tool from "./Tool";
 import AddTool from './AddTool.js';
 import './Tool.css';
 
-const tableName = 'handTools';
+const tableName = 'potectorTools';
 const isManager = JSON.parse(localStorage.getItem("currentUser")).isManager;
 
-const HandTools = () => {
+const PotectorTools = () => {
   const [tools, setTools] = useState(null);
   const [showManagerControl, setShowManagerControl] = useState(false);
   
@@ -42,4 +42,4 @@ const HandTools = () => {
   );
 };
 
-export default HandTools;
+export default PotectorTools;

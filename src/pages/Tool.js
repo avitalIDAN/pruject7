@@ -31,6 +31,34 @@ const Tool = ({ tool , tableName , updateToolList , isManager}) => {
       });
   }, [tool.image]);
 
+
+  const handleQuantityAvailableChange = async (newQuantity) => {
+    try {
+      const updatedData = {
+        id: tool.id,
+        name: name,
+        quantityAvailable: newQuantity,
+        quantity: quantity,
+        cost: cost, 
+        size: size, 
+      };
+      // Perform a PUT request to update the quantityAvailable in the database
+      const response = await requestsPut(`/${tableName}/${tool.id}`,updatedData);
+
+      if (response.ok){
+        // If the update was successful, update the local state with the new quantityAvailable
+        setQuantityAvailable(newQuantity);
+        // Optionally, you can fetch the updated tool list from the server
+        updateToolList();
+      } else {
+        throw new Error('Failed to update the quantityAvailable');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('An error occurred while updating the quantityAvailable');
+    }
+  };
+
   const handleLendClick = async () => {
     const user = JSON.parse(localStorage.getItem("currentUser"));
     if (user == null){
@@ -49,7 +77,8 @@ const Tool = ({ tool , tableName , updateToolList , isManager}) => {
       try {
         const response = await requestsPost("/lending", lendingData);
         if (response.ok) {
-          //setQuantityAvailable(tool.setQuantityAvailable++); update in server
+          var newQuantity= tool.quantityAvailable-1;
+          handleQuantityAvailableChange(newQuantity);
           // Item was successfully lent, you can handle it as needed
           alert("המוצר זמין, פרטייך נשמרו במערכת, מוזמן להגיע בשעות הפתיחה :)"); // You can customize this message
         } else {

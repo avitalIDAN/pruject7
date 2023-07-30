@@ -4,7 +4,6 @@ router.use(express.json());
 var DB = require("../DB");
 var tableName = 'lending';
 
-
 router.get("/", (req, res) => {
     DB.get(tableName, req.query)
       .then((result) => {
@@ -17,15 +16,7 @@ router.get("/", (req, res) => {
       });
   });
   
-
   router.post("/", (req, res) => {
-    // const { error } = Check.check(tableName, req.body);
-  
-    // if (error) {
-    //   console.log(error.details[0].message);
-    //   return res.status(400).send(error.details[0].message);
-    // }
-
     DB.post(tableName, req.body)
       .then((result) => {
         console.log(result); // Access the result array here
@@ -38,12 +29,6 @@ router.get("/", (req, res) => {
 });
   
 router.put("/:id", (req, res) => {
-    // check body
-    // const { error } = Check.check(tableName, req.body);
-    // if (error) {
-    //   console.log(error.details[0].message);
-    //   return res.status(400).send(error.details[0].message);
-    // }
     const id = req.params.id;
     const updatedData = req.body;
     console.log("Received update request for ID:", id);

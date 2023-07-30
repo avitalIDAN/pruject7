@@ -8,10 +8,10 @@ import Layout from "./pages/Layout";
 import Login from './pages/Login';
 import Registration from "./pages/SignIn"
 import GardenTools from "./pages/gardenTools";
-import ElectricEquipment from "./pages/ElectricEquipment"
+import ElectricTool from "./pages/ElectricTool"
 import HandTools from "./pages/HandTools"
-import ProtectiveEquipment from "./pages/ProtectiveEquipment"
-import HomeTools from "./pages/HandTools"
+import PotectorTools from "./pages/PotectorTools"
+import HomeTools from "./pages/HomeTools"
 import CampingTools from "./pages/CampingTools"
 import DonatingTools from "./pages/DonatingTools"
 
@@ -27,9 +27,9 @@ function App() {
           <Route path="Home" element={<Home />} />
           {/* <Route path="regulations" element={<regulations />} /> */}
           <Route path="GardenTools" element={<GardenTools />} />
-          <Route path="ElectricEquipment" element={<ElectricEquipment />} />
+          <Route path="ElectricEquipment" element={<ElectricTool />} />
           <Route path="HandTools" element={<HandTools />} />
-          <Route path="ProtectiveEquipment" element={<ProtectiveEquipment />} />
+          <Route path="ProtectiveEquipment" element={<PotectorTools />} />
           <Route path="HomeTools" element={<HomeTools />} />
           <Route path="CampingTools" element={<CampingTools />} />
           <Route path="DonatingTools" element={<DonatingTools />} />
