@@ -21,13 +21,12 @@ userId INT,
 username VARCHAR(255),
 itemId INT,
 tableName VARCHAR(255),
-dateLending date,
-dateReturn date,
+itemName VARCHAR(255),
+dateLending VARCHAR(255),
+dateReturn VARCHAR(255),
 isLending boolean,
 isReturn boolean,
-managerId INT,
-FOREIGN KEY (userId) REFERENCES users(id),
-FOREIGN KEY (managerId) REFERENCES users(id)
+FOREIGN KEY (userId) REFERENCES users(id)
 );
 
 CREATE TABLE donation(

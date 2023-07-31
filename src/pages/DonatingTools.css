@@ -1,0 +1,47 @@
+/* DonatingTools.css */
+
+.new-tool-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 400px;
+    margin: 20px auto;
+  }
+  
+  .new-tool-form input,
+  .new-tool-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .new-tool-form button {
+    background-color: #e21324;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .new-tool-form button:hover {
+    background-color: #f7918a;
+}
+  
+  .new-tool-form select {
+    /* Customize appearance of the select dropdown arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-size: 12px;
+    background-position: right center;
+    background-repeat: no-repeat;
+    padding-right: 30px; /* Add some space for the arrow icon */
+  }
+  

@@ -17,6 +17,7 @@ const Tool = ({ tool , tableName , updateToolList , isManager}) => {
   const [quantity, setQuantity] = useState(tool.quantity);
   const [cost, setCost] = useState(tool.cost);
   const [size, setSize] = useState(tool.size);
+  
   let navigate = useNavigate();
   
 
@@ -74,6 +75,7 @@ const Tool = ({ tool , tableName , updateToolList , isManager}) => {
         username: user.username,
         itemId: tool.id,
         tableName: tableName,
+        itemName: tool.name
       };
       try {
         const response = await requestsPost("/lending", lendingData);
