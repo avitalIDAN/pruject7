@@ -1,33 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { 
+  requestsGet,
+  requestsPut, 
+} from "../requestsToServer.js";
 import { useTable } from 'react-table';
 
+const tableName = 'donation';
+
 const TableWithCheckboxes = () => {
+  const [data, setData] = useState([]);
+
+  async function fetchData() {
+    try {
+      const response = await requestsGet(`/`+tableName);
+      console.log(response);
+      setData(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   // Sample data for demonstration
-  const data = React.useMemo(
-    () => [
-      { id: 1, name: 'Item 1', price: 10 },
-      { id: 2, name: 'Item 2', price: 20 },
-      { id: 3, name: 'Item 3', price: 30 },
-      // Add more rows as needed
-    ],
-    []
-  );
+  // const data = React.useMemo(
+  //   () => fetchData(),
+  //   []
+  // );
 
   // Define columns for the table
   const columns = React.useMemo(
     () => [
       { Header: 'ID', accessor: 'id' },
-      { Header: 'שם', accessor: 'name' },
-      { Header: 'שם מוצר', accessor: 'price' },
-      { Header: 'סוג מוצר', accessor: 'column4' },
-    ],
-    []
+      { Header: 'שם', accessor: 'username' },
+      { Header: 'שם מוצר', accessor: 'itemName' },     
+      { Header: 'הושאל', accessor: 'checkbox', 
+      Cell: ({ row }) => <input type="checkbox" checked={row.original.isDonated} onChange={() => handleCheckboxClick(row.original)} /> },
+      ],
+      []
   );
 
-  // Add checkboxes to the columns array for the last two columns
-  columns.push(
-    { Header: 'נתרם', accessor: 'checkbox1', Cell: ({ row }) => <input type="checkbox" /> }
-  );
+  const handleCheckboxClick = async (Donation) => {
+    if(!Donation.isDonated){
+      Donation.isDonated = true;
+      console.log(Donation);
+      //requestsPut();
+      await requestsPut(`/${tableName}/${Donation.id}`,Donation);
+      const response = await requestsGet(`/`+tableName);
+      console.log(response);
+      setData(response);
+      //add Donation
+    }
+    //d.toDateString();
+    //עדכון
+    //תאריך*2
+    //console.log(`Checkbox ${checkboxNumber} for ID ${id} clicked.`);
+    // Add your custom logic here, based on the checkbox click
+  };
 
   const {
     getTableProps,

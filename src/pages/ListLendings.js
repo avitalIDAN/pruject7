@@ -35,7 +35,7 @@ const TableWithCheckboxes = () => {
       { Header: 'ID', accessor: 'id' },
       { Header: 'שם', accessor: 'username' },
     //   { Header: 'שם מוצר', accessor: 'price' },
-      { Header: 'סוג מוצר', accessor: 'tableName' },
+      { Header: 'שם מוצר', accessor: 'itemName' },
       { Header: 'תאריך השאלה', accessor: 'dateLending' },
       { Header: 'תאריך החזרה', accessor: 'dateReturn' },      
       { Header: 'הושאל', accessor: 'checkbox1', 
@@ -47,39 +47,43 @@ const TableWithCheckboxes = () => {
   );
 
   const handleCheckbox1Click = async (Lending) => {
-    const dateLending = new Date();
-    Lending.dateLending = dateLending.toDateString();
-    dateLending.setDate(dateLending.getDate() + 7);
-    Lending.dateReturn = dateLending.toDateString();
-    Lending.isLending = true;
-    console.log(Lending);
-    //requestsPut();
-    await requestsPut(`/${tableName}/${Lending.id}`,Lending);
-    const response = await requestsGet(`/`+tableName);
-    console.log(response);
-    setData(response);
+    if(!Lending.isLending){
+      const dateLending = new Date();
+      Lending.dateLending = dateLending.toDateString();
+      dateLending.setDate(dateLending.getDate() + 7);
+      Lending.dateReturn = dateLending.toDateString();
+      Lending.isLending = true;
+      console.log(Lending);
+      //requestsPut();
+      await requestsPut(`/${tableName}/${Lending.id}`,Lending);
+      const response = await requestsGet(`/`+tableName);
+      console.log(response);
+      setData(response);
+    }
     //d.toDateString();
     //עדכון
     //תאריך*2
     //console.log(`Checkbox ${checkboxNumber} for ID ${id} clicked.`);
     // Add your custom logic here, based on the checkbox click
-  };
+  }
   const handleCheckbox2Click = async (Lending) => {
-    Lending.isReturn = true;
-    console.log(Lending);
-    //requestsPut();
-    await requestsPut(`/${tableName}/${Lending.id}`,Lending);
-    const response = await requestsGet(`/${Lending.tableName}?id=${Lending.itemId}`);
-    console.log(response[0]);
-    const updatedData= {...response[0], quantityAvailable: response[0].quantityAvailable+1};
-    console.log(updatedData);
-    // Perform a PUT request to update the quantityAvailable in the database
-    await requestsPut(`/${Lending.tableName}/${Lending.itemId}`,updatedData);
+    if(!Lending.isReturn){
+      Lending.isReturn = true;
+      console.log(Lending);
+      //requestsPut();
+      await requestsPut(`/${tableName}/${Lending.id}`,Lending);
+      const response = await requestsGet(`/${Lending.tableName}?id=${Lending.itemId}`);
+      console.log(response[0]);
+      const updatedData= {...response[0], quantityAvailable: response[0].quantityAvailable+1};
+      console.log(updatedData);
+      // Perform a PUT request to update the quantityAvailable in the database
+      await requestsPut(`/${Lending.tableName}/${Lending.itemId}`,updatedData);
+    }
     //עדכון
     //כמות
     //console.log(`Checkbox ${checkboxNumber} for ID ${id} clicked.`);
     // Add your custom logic here, based on the checkbox click
-  };
+  }
 
   // Add checkboxes to the columns array for the last two columns
   // columns.push(
