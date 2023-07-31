@@ -5,7 +5,8 @@ import AddTool from './AddTool.js';
 import './Tool.css';
 
 const tableName = 'homeTools';
-const isManager = JSON.parse(localStorage.getItem("currentUser")).isManager;
+var user = JSON.parse(localStorage.getItem("currentUser"));
+const isManager = user?user.isManager:null;
 
 const HomeTools = () => {
   const [tools, setTools] = useState(null);

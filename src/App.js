@@ -14,7 +14,8 @@ import PotectorTools from "./pages/PotectorTools"
 import HomeTools from "./pages/HomeTools"
 import CampingTools from "./pages/CampingTools"
 import DonatingTools from "./pages/DonatingTools"
-
+import ListLendings from "./pages/ListLendings"
+import ListDonations from "./pages/ListDonations"
 
 function App() {
   return (
@@ -32,7 +33,8 @@ function App() {
           <Route path="HomeTools" element={<HomeTools />} />
           <Route path="CampingTools" element={<CampingTools />} />
           <Route path="DonatingTools" element={<DonatingTools />} />
-
+          <Route path="ListDonations" element={<ListDonations />} />
+          <Route path="ListLendings" element={<ListLendings />} />
         </Route>
       </Routes>
     </BrowserRouter>

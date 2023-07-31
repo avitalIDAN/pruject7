@@ -3,6 +3,7 @@ import "./Layout.css";
 
 const Layout = () => {
   var user = JSON.parse(localStorage.getItem("currentUser"));
+  const isManager = user?user.isManager:null;
   return (
     <div dir="rtl" className="Layout-container">      
       <nav className="Layout-navigation">
@@ -32,6 +33,12 @@ const Layout = () => {
           <li>
             <Link to={`/ArgazKelim/DonatingTools`}>תרומת כלים</Link>
           </li>
+          {isManager?<li>
+            <Link to={`/ArgazKelim/ListDonations`}>רשימת תרומות</Link>
+          </li>:null}
+          {isManager?<li>
+            <Link to={`/ArgazKelim/ListLendings`}>רשימת השאלות</Link>
+          </li>:null}
         </ul>
         <Link to="/Login">
         {user?(
