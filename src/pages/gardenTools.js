@@ -6,7 +6,7 @@ import './Tool.css';
 
 const tableName = 'garden';
 var user = JSON.parse(localStorage.getItem("currentUser"));
-const isManager = user?user.isManager:null;
+const isManager = user?user.isManager:false;
 
 const GardenTools = () => {
   const [tools, setTools] = useState(null);
@@ -32,6 +32,7 @@ const GardenTools = () => {
 
   return (
     <div dir="rtl" className="Tools-container">
+      <h2>כלי גינה</h2>
       {showManagerControl && ( <AddTool tableName={tableName} updateToolList={updateToolList}></AddTool>
       )}
       <div className="tool-list-container">

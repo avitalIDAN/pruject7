@@ -38,7 +38,7 @@ const DonatingTools = () => {
 
 
   // List of available tables
-  const tableOptions = ['כלי גינה', 'ציוד חשמלי', 'כלי עבודה ידניים', 'ציוד מגן', 'כלי עבודהה לבית', 'כלי קאמפינג'];
+  const tableOptions = ['כלי גינה', 'ציוד חשמלי', 'כלי עבודה ידניים', 'ציוד מגן', 'כלי עבודהה לבית', 'כלי קמפינג'];
 
   return (
     <div dir="rtl" className="new-tool-form">
@@ -61,7 +61,7 @@ const DonatingTools = () => {
           </option>
         ))}
       </select>
-      <button onClick={handleDonateTool}>תרומת כלים</button>
+      <button onClick={handleDonateTool}>תרום כלי</button>
     </div>
   );
 };

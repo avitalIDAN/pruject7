@@ -1,0 +1,25 @@
+/* TableWithCheckboxes.css */
+
+.TableWithCheckboxes {
+    margin: 20px; /* Adjust the value as needed */
+  }
+
+table {
+    border: 1px solid black;
+    width: 80%;
+    border-radius: 5px;
+  }
+  
+  th {
+    border-bottom: solid 3px red;
+    background: aliceblue;
+    color: black;
+    font-weight: bold;
+  }
+  
+  td {
+    padding: 10px;
+    border: solid 1px gray;
+    background: papayawhip;
+  }
+  

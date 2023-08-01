@@ -123,3 +123,37 @@
   .new-tool-form button[type="button"] {
     background-color: #dc3545;
   }
+
+  @media (max-width: 768px) {
+    .tool-item {
+      /* Adjust spacing for smaller screens */
+      margin-bottom: 10px;
+    }
+  
+    .tool-container {
+      /* Adjust padding and margin for smaller screens */
+      padding: 5px;
+      margin: 5px;
+    }
+  
+    .tool-container .image {
+      /* Adjust image size for smaller screens */
+      width: 80px;
+      height: 80px;
+    }
+  
+    .form-container input {
+      /* Adjust input width for smaller screens */
+      width: 100%;
+    }
+  
+    .new-tool-form {
+      /* Adjust form width for smaller screens */
+      width: 100%;
+    }
+  
+    .add-button-container {
+      /* Adjust button container width for smaller screens */
+      width: 100%;
+    }
+  }

@@ -45,3 +45,27 @@
     padding-right: 30px; /* Add some space for the arrow icon */
   }
   
+  /* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+  .new-tool-form {
+    max-width: 100%; /* Make the form take the full width of the screen */
+    margin: 10px; /* Reduce the margin for smaller screens */
+  }
+
+  .new-tool-form input,
+  .new-tool-form select {
+    /* Reduce the padding and margin for smaller screens */
+    padding: 8px;
+    margin-bottom: 8px;
+  }
+
+  .new-tool-form button {
+    /* Adjust button padding for smaller screens */
+    padding: 8px 16px;
+  }
+
+  .new-tool-form select {
+    /* Increase the font size for better visibility on mobile */
+    font-size: 14px;
+  }
+}

@@ -4,7 +4,7 @@ var con = mysql.createConnection({
   host: "localhost",
   port: "3306",
   user: "root",
-  password: "322998386",
+  password: "123456",
   database: "argaz",
 });
 
@@ -12,8 +12,6 @@ con.connect(async function (err) {
   if (err) throw err;
   console.log("Connected!");
 });
-
-let tables = ["users","userspass","lending","donation","garden","electric","handTools","potectorTools","homeTools","camping"];
 
 exports.get = function (tableName, itemID = {}, moreTableName = "") {
   return new Promise((resolve, reject) => {
@@ -25,8 +23,6 @@ exports.get = function (tableName, itemID = {}, moreTableName = "") {
       return;
     }
     var sql;
-    console.log("line 21");
-    console.log(itemID);
     if (Object.keys(itemID).length === 0) {
       sql = `SELECT * FROM ${tableName}`;
     } else {
@@ -45,17 +41,8 @@ exports.get = function (tableName, itemID = {}, moreTableName = "") {
         Object.entries(itemID).forEach(([key, value]) => {
           console.log(`Key: ${key}, Value: ${value}`);
         });
-        console.log("line 37 " + itemID);
         sql = `SELECT * FROM ${moreTableName} WHERE ${col} = ${itemID.id}`;
       }
-    }
-
-    console.log("line 42");
-    console.log(sql);
-
-    if (!tables.some((item) => sql.includes(item))) {
-      reject(new Error("Invalid table name"));
-      return;
     }
 
     con.query(sql, function (err, result) {
@@ -68,56 +55,27 @@ exports.get = function (tableName, itemID = {}, moreTableName = "") {
   });
 };
 
-exports.put = function (tableName, data) {
+exports.put = function (tableName, id, data) {
   return new Promise((resolve, reject) => {
-    if (!data.id) {
-      reject(new Error("Updated member does not have a valid ID."));
-      return;
-    }
-
-    let sql = `UPDATE ${tableName} SET ? WHERE id = ?`;
-    let checkSql = `SELECT COUNT(*) AS count FROM ${tableName} WHERE id = ?`;
-
-    console.log("line 30");
-    console.log(sql);
-
-    if (!tables.some((item) => sql.includes(item))) {
-      reject(new Error("Invalid table name"));
-      return;
-    }
-
-    con.query(checkSql, data.id, function (err, result) {
-      if (err) {
-        reject(err);
-      } else {
-        if (result[0].count === 0) {
-          reject(new Error("No member with the specified ID exists."));
-        } else {
-          con.query(sql, [data, data.id], function (err, result) {
-            if (err) {
-              reject(err);
-            } else {
-              console.log("Member updated successfully.");
-              console.log(result);
-              resolve(data);
-            }
-          });
-        }
-      }
-    });
-  });
+        const query = `UPDATE ${tableName} SET ? WHERE id = ?`;
+    
+        con.query(query, [data, id], (error, result) => {
+          if (error) {
+            reject(error);
+          } else if (result.affectedRows === 0) {
+            reject(`Item with ID ${id} not found in table ${tableName}`);
+          } else {
+            resolve({ message: "Item updated successfully" });
+          }
+        });
+      });
 };
+
 
 exports.post = function (tableName, data) {
   return new Promise((resolve, reject) => {
-    console.log(data);
     let sql = `INSERT INTO ${tableName} SET ?`;
     let checkSql = `SELECT MAX(id) AS maxId FROM ${tableName}`;
-
-    if (!tables.some((item) => sql.includes(item))) {
-      reject(new Error("Invalid table name"));
-      return;
-    }
 
     con.query(checkSql, function (err, result) {
       if (err) {
@@ -125,10 +83,6 @@ exports.post = function (tableName, data) {
       } else {
         const nextId = result[0].maxId + 1;
         data.id = nextId;
-        if (tableName == "users") {
-          data.api_key = nextId.toString();
-        }
-
         con.query(sql, data, function (err, result) {
           if (err) {
             reject(err);
@@ -142,7 +96,7 @@ exports.post = function (tableName, data) {
   });
 };
 
-exports.deletee = function (tableName, itemID) {
+exports.delete = function (tableName, itemID) {
   return new Promise((resolve, reject) => {
     if (!itemID) {
       reject(new Error("No valid ID provided."));
@@ -151,11 +105,6 @@ exports.deletee = function (tableName, itemID) {
 
     let sql = `DELETE FROM ${tableName} WHERE id = ?`;
     let checkSql = `SELECT COUNT(*) AS count FROM ${tableName} WHERE id = ?`;
-
-    if (!tables.some((item) => sql.includes(item))) {
-      reject(new Error("Invalid table name"));
-      return;
-    }
 
     con.query(checkSql, itemID, function (err, result) {
       if (err) {

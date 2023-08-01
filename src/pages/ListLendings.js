@@ -4,6 +4,7 @@ import {
   requestsPut, 
 } from "../requestsToServer.js";
 import { useTable } from 'react-table';
+import './tableWithCheckboxes.css'; 
 
 const tableName = 'lending';
 
@@ -23,18 +24,12 @@ const TableWithCheckboxes = () => {
     fetchData();
   }, []);
 
-  // Sample data for demonstration
-  // const data = React.useMemo(
-  //   () => fetchData(),
-  //   []
-  // );
 
   // Define columns for the table
   const columns = React.useMemo(
     () => [
       { Header: 'ID', accessor: 'id' },
       { Header: 'שם', accessor: 'username' },
-    //   { Header: 'שם מוצר', accessor: 'price' },
       { Header: 'שם מוצר', accessor: 'itemName' },
       { Header: 'תאריך השאלה', accessor: 'dateLending' },
       { Header: 'תאריך החזרה', accessor: 'dateReturn' },      
@@ -54,17 +49,11 @@ const TableWithCheckboxes = () => {
       Lending.dateReturn = dateLending.toDateString();
       Lending.isLending = true;
       console.log(Lending);
-      //requestsPut();
       await requestsPut(`/${tableName}/${Lending.id}`,Lending);
       const response = await requestsGet(`/`+tableName);
       console.log(response);
       setData(response);
     }
-    //d.toDateString();
-    //עדכון
-    //תאריך*2
-    //console.log(`Checkbox ${checkboxNumber} for ID ${id} clicked.`);
-    // Add your custom logic here, based on the checkbox click
   }
   const handleCheckbox2Click = async (Lending) => {
     if(!Lending.isReturn){
@@ -79,17 +68,7 @@ const TableWithCheckboxes = () => {
       // Perform a PUT request to update the quantityAvailable in the database
       await requestsPut(`/${Lending.tableName}/${Lending.itemId}`,updatedData);
     }
-    //עדכון
-    //כמות
-    //console.log(`Checkbox ${checkboxNumber} for ID ${id} clicked.`);
-    // Add your custom logic here, based on the checkbox click
   }
-
-  // Add checkboxes to the columns array for the last two columns
-  // columns.push(
-  //   { Header: 'Checkbox 1', accessor: 'הושאל', Cell: ({ row }) => <input type="checkbox" /> },
-  //   { Header: 'Checkbox 2', accessor: 'הוחזר', Cell: ({ row }) => <input type="checkbox" /> }
-  // );
 
   const {
     getTableProps,
@@ -100,14 +79,13 @@ const TableWithCheckboxes = () => {
   } = useTable({ columns, data });
 
   return (
-    <table {...getTableProps()} style={{ border: '1px solid black', width: '100%' }}>
+    <table className="TableWithCheckboxes" {...getTableProps()}>
       <thead>
         {headerGroups.map((headerGroup) => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map((column) => (
               <th
                 {...column.getHeaderProps()}
-                style={{ borderBottom: 'solid 3px red', background: 'aliceblue', color: 'black', fontWeight: 'bold' }}
               >
                 {column.render('Header')}
               </th>
@@ -124,7 +102,6 @@ const TableWithCheckboxes = () => {
                 return (
                   <td
                     {...cell.getCellProps()}
-                    style={{ padding: '10px', border: 'solid 1px gray', background: 'papayawhip' }}
                   >
                     {cell.render('Cell')}
                   </td>

@@ -6,9 +6,6 @@ import { requestsPost } from "../requestsToServer";
 const Registration = () => {
   const [user, setUser] = useState({});
   const [inputs, setInputs] = useState({});
-  // const [visibilityMoreInfo, setvisibilityMoreInfo] = useState({
-  //   visibility: "hidden"
-  // });
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -40,7 +37,6 @@ const Registration = () => {
 
   async function fetchInfo() {
     try {
-      //setvisibilityMoreInfo({visibility: "hidden"})
       let newInUser = {
         id: user.id,
         name: inputs.name || "name",
@@ -50,7 +46,6 @@ const Registration = () => {
         address: inputs.address || "address",
       };
       setInputs({});
-      //var json = JSON.stringify(newInUser);
       console.log(newInUser);
       requestsPost(`/users`, newInUser);
 
@@ -59,21 +54,16 @@ const Registration = () => {
     }
   }
 
-  // const MoreInfo = function () {
-  //   setvisibilityMoreInfo({ visibility: "visible" });
-  // };
-
   const handleSubmit = async (event) => {
     try{
       event.preventDefault();
-      console.log("line36");
       console.log(user);
       await fetchInfo();
       await fetchData();
       window.location.href = "/Login";
     }
-    catch{
-      //error
+    catch (error) {
+      console.error(error);
     }
     
     

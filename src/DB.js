@@ -83,10 +83,6 @@ exports.post = function (tableName, data) {
       } else {
         const nextId = result[0].maxId + 1;
         data.id = nextId;
-        // if (tableName == "users") {
-        //   data.api_key = nextId.toString();
-        // }
-
         con.query(sql, data, function (err, result) {
           if (err) {
             reject(err);

@@ -66,3 +66,21 @@ html, body {
   border-radius: 5px;
 }
 
+
+@media screen and (max-width: 768px) {
+  /* Adjust the layout for smaller screens */
+  .Layout-navigation {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+  }
+  
+  .Layout-navigation ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .Layout-navigation li {
+    margin: 5px 0;
+  }
+}
